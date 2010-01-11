@@ -93,11 +93,16 @@ namespace BACnet_Server
 
 
 
-        private void MainForm_Load(object sender, EventArgs e)
-        {
 
-        }
 		
+        private void buttonClearLog_Click(object sender, EventArgs e)
+        {
+            while (treeViewMessageLog.Nodes.Count > 0)
+            {
+                treeViewMessageLog.Nodes.RemoveAt(0);
+            }
+        }
+
 		
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -112,7 +117,14 @@ namespace BACnet_Server
         }
 
 
+        private void backgroundWorkerApp_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BACnetAppTask bt = new BACnetAppTask(_apm, bnm);
 
+            bt.ServerApplication();
+        }
+		
+		
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             this.linkLabel1.LinkVisited = true;
@@ -124,5 +136,12 @@ namespace BACnet_Server
             this.linkLabel1.LinkVisited = true;
             System.Diagnostics.Process.Start("http://www.bacnetwiki.com");
         }
+
+        private void linkLabelProgramWebsite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.linkLabel1.LinkVisited = true;
+            System.Diagnostics.Process.Start("https://sourceforge.net/projects/bacnetserver/");
+        }
+
     }
 }

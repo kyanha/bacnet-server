@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.buttonQuit = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -36,14 +37,13 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.timerUpdateUI = new System.Windows.Forms.Timer(this.components);
             this.treeViewMessageLog = new System.Windows.Forms.TreeView();
+            this.buttonClearLog = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxDiagnosticLog = new System.Windows.Forms.TextBox();
             this.backgroundWorkerApp = new System.ComponentModel.BackgroundWorker();
             this.buttonClearDiag = new System.Windows.Forms.Button();
             this.tabControlLogs = new System.Windows.Forms.TabControl();
             this.tabPageLog = new System.Windows.Forms.TabPage();
-            this.tabPageConfig = new System.Windows.Forms.TabPage();
-            this.textBoxConfigChanges = new System.Windows.Forms.TextBox();
             this.tabPageErrors = new System.Windows.Forms.TabPage();
             this.textBoxPanics = new System.Windows.Forms.TextBox();
             this.tabPageProtocol = new System.Windows.Forms.TabPage();
@@ -52,10 +52,10 @@
             this.textBoxTodo = new System.Windows.Forms.TextBox();
             this.checkBoxLogMessages = new System.Windows.Forms.CheckBox();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.linkLabelProgramWebsite = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControlLogs.SuspendLayout();
             this.tabPageLog.SuspendLayout();
-            this.tabPageConfig.SuspendLayout();
             this.tabPageErrors.SuspendLayout();
             this.tabPageProtocol.SuspendLayout();
             this.tabPageTodo.SuspendLayout();
@@ -63,7 +63,7 @@
             // 
             // buttonQuit
             // 
-            this.buttonQuit.Location = new System.Drawing.Point(861, 331);
+            this.buttonQuit.Location = new System.Drawing.Point(933, 379);
             this.buttonQuit.Name = "buttonQuit";
             this.buttonQuit.Size = new System.Drawing.Size(75, 23);
             this.buttonQuit.TabIndex = 5;
@@ -74,7 +74,7 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(388, 350);
+            this.linkLabel1.Location = new System.Drawing.Point(606, 357);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(95, 13);
             this.linkLabel1.TabIndex = 0;
@@ -120,10 +120,20 @@
             this.treeViewMessageLog.Size = new System.Drawing.Size(488, 284);
             this.treeViewMessageLog.TabIndex = 8;
             // 
+            // buttonClearLog
+            // 
+            this.buttonClearLog.Location = new System.Drawing.Point(138, 351);
+            this.buttonClearLog.Name = "buttonClearLog";
+            this.buttonClearLog.Size = new System.Drawing.Size(75, 23);
+            this.buttonClearLog.TabIndex = 9;
+            this.buttonClearLog.Text = "Clear";
+            this.buttonClearLog.UseVisualStyleBackColor = true;
+            this.buttonClearLog.Click += new System.EventHandler(this.buttonClearLog_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(356, 351);
+            this.label1.Location = new System.Drawing.Point(574, 358);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(26, 13);
             this.label1.TabIndex = 2;
@@ -134,12 +144,16 @@
             this.textBoxDiagnosticLog.Location = new System.Drawing.Point(0, 0);
             this.textBoxDiagnosticLog.Multiline = true;
             this.textBoxDiagnosticLog.Name = "textBoxDiagnosticLog";
-            this.textBoxDiagnosticLog.Size = new System.Drawing.Size(400, 711);
+            this.textBoxDiagnosticLog.Size = new System.Drawing.Size(404, 223);
             this.textBoxDiagnosticLog.TabIndex = 0;
+            // 
+            // backgroundWorkerApp
+            // 
+            this.backgroundWorkerApp.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorkerApp_DoWork);
             // 
             // buttonClearDiag
             // 
-            this.buttonClearDiag.Location = new System.Drawing.Point(158, 727);
+            this.buttonClearDiag.Location = new System.Drawing.Point(6, 229);
             this.buttonClearDiag.Name = "buttonClearDiag";
             this.buttonClearDiag.Size = new System.Drawing.Size(75, 23);
             this.buttonClearDiag.TabIndex = 17;
@@ -150,7 +164,6 @@
             // tabControlLogs
             // 
             this.tabControlLogs.Controls.Add(this.tabPageLog);
-            this.tabControlLogs.Controls.Add(this.tabPageConfig);
             this.tabControlLogs.Controls.Add(this.tabPageErrors);
             this.tabControlLogs.Controls.Add(this.tabPageProtocol);
             this.tabControlLogs.Controls.Add(this.tabPageTodo);
@@ -172,32 +185,13 @@
             this.tabPageLog.Text = "Log";
             this.tabPageLog.UseVisualStyleBackColor = true;
             // 
-            // tabPageConfig
-            // 
-            this.tabPageConfig.Controls.Add(this.textBoxConfigChanges);
-            this.tabPageConfig.Location = new System.Drawing.Point(4, 22);
-            this.tabPageConfig.Name = "tabPageConfig";
-            this.tabPageConfig.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageConfig.Size = new System.Drawing.Size(395, 258);
-            this.tabPageConfig.TabIndex = 1;
-            this.tabPageConfig.Text = "Config Changes";
-            this.tabPageConfig.UseVisualStyleBackColor = true;
-            // 
-            // textBoxConfigChanges
-            // 
-            this.textBoxConfigChanges.Location = new System.Drawing.Point(0, 0);
-            this.textBoxConfigChanges.Multiline = true;
-            this.textBoxConfigChanges.Name = "textBoxConfigChanges";
-            this.textBoxConfigChanges.Size = new System.Drawing.Size(396, 711);
-            this.textBoxConfigChanges.TabIndex = 0;
-            // 
             // tabPageErrors
             // 
             this.tabPageErrors.Controls.Add(this.textBoxPanics);
             this.tabPageErrors.Location = new System.Drawing.Point(4, 22);
             this.tabPageErrors.Name = "tabPageErrors";
             this.tabPageErrors.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageErrors.Size = new System.Drawing.Size(395, 258);
+            this.tabPageErrors.Size = new System.Drawing.Size(404, 258);
             this.tabPageErrors.TabIndex = 2;
             this.tabPageErrors.Text = "Errors";
             this.tabPageErrors.UseVisualStyleBackColor = true;
@@ -207,7 +201,7 @@
             this.textBoxPanics.Location = new System.Drawing.Point(0, 0);
             this.textBoxPanics.Multiline = true;
             this.textBoxPanics.Name = "textBoxPanics";
-            this.textBoxPanics.Size = new System.Drawing.Size(396, 711);
+            this.textBoxPanics.Size = new System.Drawing.Size(404, 258);
             this.textBoxPanics.TabIndex = 0;
             // 
             // tabPageProtocol
@@ -216,7 +210,7 @@
             this.tabPageProtocol.Location = new System.Drawing.Point(4, 22);
             this.tabPageProtocol.Name = "tabPageProtocol";
             this.tabPageProtocol.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageProtocol.Size = new System.Drawing.Size(395, 258);
+            this.tabPageProtocol.Size = new System.Drawing.Size(404, 258);
             this.tabPageProtocol.TabIndex = 3;
             this.tabPageProtocol.Text = "Protocol";
             this.tabPageProtocol.UseVisualStyleBackColor = true;
@@ -226,7 +220,7 @@
             this.textBoxProtocol.Location = new System.Drawing.Point(0, 0);
             this.textBoxProtocol.Multiline = true;
             this.textBoxProtocol.Name = "textBoxProtocol";
-            this.textBoxProtocol.Size = new System.Drawing.Size(396, 721);
+            this.textBoxProtocol.Size = new System.Drawing.Size(404, 258);
             this.textBoxProtocol.TabIndex = 0;
             // 
             // tabPageTodo
@@ -235,7 +229,7 @@
             this.tabPageTodo.Location = new System.Drawing.Point(4, 22);
             this.tabPageTodo.Name = "tabPageTodo";
             this.tabPageTodo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageTodo.Size = new System.Drawing.Size(395, 258);
+            this.tabPageTodo.Size = new System.Drawing.Size(404, 258);
             this.tabPageTodo.TabIndex = 4;
             this.tabPageTodo.Text = "Todo";
             this.tabPageTodo.UseVisualStyleBackColor = true;
@@ -245,7 +239,7 @@
             this.textBoxTodo.Location = new System.Drawing.Point(0, 0);
             this.textBoxTodo.Multiline = true;
             this.textBoxTodo.Name = "textBoxTodo";
-            this.textBoxTodo.Size = new System.Drawing.Size(400, 722);
+            this.textBoxTodo.Size = new System.Drawing.Size(404, 258);
             this.textBoxTodo.TabIndex = 0;
             // 
             // checkBoxLogMessages
@@ -263,7 +257,7 @@
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(388, 372);
+            this.linkLabel2.Location = new System.Drawing.Point(606, 379);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(108, 13);
             this.linkLabel2.TabIndex = 21;
@@ -271,30 +265,42 @@
             this.linkLabel2.Text = "www.bacnetwiki.com";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
+            // linkLabelProgramWebsite
+            // 
+            this.linkLabelProgramWebsite.AutoSize = true;
+            this.linkLabelProgramWebsite.Location = new System.Drawing.Point(326, 357);
+            this.linkLabelProgramWebsite.Name = "linkLabelProgramWebsite";
+            this.linkLabelProgramWebsite.Size = new System.Drawing.Size(136, 13);
+            this.linkLabelProgramWebsite.TabIndex = 22;
+            this.linkLabelProgramWebsite.TabStop = true;
+            this.linkLabelProgramWebsite.Text = "BACnet Server Home Page";
+            this.linkLabelProgramWebsite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelProgramWebsite_LinkClicked);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 414);
+            this.Controls.Add(this.linkLabelProgramWebsite);
             this.Controls.Add(this.linkLabel2);
             this.Controls.Add(this.checkBoxLogMessages);
             this.Controls.Add(this.tabControlLogs);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonClearLog);
             this.Controls.Add(this.treeViewMessageLog);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.buttonQuit);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "BACnet Server";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ServerMainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControlLogs.ResumeLayout(false);
             this.tabPageLog.ResumeLayout(false);
             this.tabPageLog.PerformLayout();
-            this.tabPageConfig.ResumeLayout(false);
-            this.tabPageConfig.PerformLayout();
             this.tabPageErrors.ResumeLayout(false);
             this.tabPageErrors.PerformLayout();
             this.tabPageProtocol.ResumeLayout(false);
@@ -311,6 +317,7 @@
         private System.Windows.Forms.Button buttonQuit;
         private System.Windows.Forms.Timer timerUpdateUI;
         private System.Windows.Forms.TreeView treeViewMessageLog;
+        private System.Windows.Forms.Button buttonClearLog;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
@@ -321,9 +328,7 @@
         private System.Windows.Forms.Button buttonClearDiag;
         private System.Windows.Forms.TabControl tabControlLogs;
         private System.Windows.Forms.TabPage tabPageLog;
-        private System.Windows.Forms.TabPage tabPageConfig;
         private System.Windows.Forms.TabPage tabPageErrors;
-        private System.Windows.Forms.TextBox textBoxConfigChanges;
         private System.Windows.Forms.TextBox textBoxPanics;
         private System.Windows.Forms.CheckBox checkBoxLogMessages;
         private System.Windows.Forms.TabPage tabPageProtocol;
@@ -331,6 +336,7 @@
         private System.Windows.Forms.TabPage tabPageTodo;
         private System.Windows.Forms.TextBox textBoxTodo;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabelProgramWebsite;
     }
 }
 
