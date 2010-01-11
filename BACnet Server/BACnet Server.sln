@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BACnet Server", "BACnet Server.csproj", "{62677ED1-4D05-4709-A9F2-8D8AB719B91F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BACnetLibrary", "..\BACnetLibrary\BACnetLibrary.csproj", "{8B4EE78E-6C18-4483-A818-2058E210227B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62677ED1-4D05-4709-A9F2-8D8AB719B91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62677ED1-4D05-4709-A9F2-8D8AB719B91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62677ED1-4D05-4709-A9F2-8D8AB719B91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62677ED1-4D05-4709-A9F2-8D8AB719B91F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B4EE78E-6C18-4483-A818-2058E210227B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B4EE78E-6C18-4483-A818-2058E210227B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B4EE78E-6C18-4483-A818-2058E210227B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B4EE78E-6C18-4483-A818-2058E210227B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
