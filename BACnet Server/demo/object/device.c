@@ -396,15 +396,17 @@ void Device_Property_Lists(
 #define MAX_DEV_VER_LEN  16
 #define MAX_DEV_DESC_LEN 64
 
-static uint32_t Object_Instance_Number = 260001;
-static char My_Object_Name[MAX_DEV_NAME_LEN + 1] = "SimpleServer";
+static uint32_t Object_Instance_Number = 260002;
+static char My_Object_Name[MAX_DEV_NAME_LEN + 1] = "BITS Test Server";
+
 static BACNET_DEVICE_STATUS System_Status = STATUS_OPERATIONAL;
 static char *Vendor_Name = BACNET_VENDOR_NAME;
 static uint16_t Vendor_Identifier = BACNET_VENDOR_ID;
-static char Model_Name[MAX_DEV_MOD_LEN + 1] = "GNU";
-static char Application_Software_Version[MAX_DEV_VER_LEN + 1] = "1.0";
+static char Model_Name[MAX_DEV_MOD_LEN + 1] = "BITS-001";
+static char Application_Software_Version[MAX_DEV_VER_LEN + 1] = "1.01";
 static char Location[MAX_DEV_LOC_LEN + 1] = "USA";
-static char Description[MAX_DEV_DESC_LEN + 1] = "server";
+static char Description[MAX_DEV_DESC_LEN + 1] = "Test Server";
+
 /* static uint8_t Protocol_Version = 1; - constant, not settable */
 /* static uint8_t Protocol_Revision = 4; - constant, not settable */
 /* Protocol_Services_Supported - dynamically generated */

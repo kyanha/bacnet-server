@@ -54,10 +54,10 @@
 
 /* Define your Vendor Identifier assigned by ASHRAE */
 #if !defined(BACNET_VENDOR_ID)
-#define BACNET_VENDOR_ID 260
+#define BACNET_VENDOR_ID 343
 #endif
 #if !defined(BACNET_VENDOR_NAME)
-#define BACNET_VENDOR_NAME "BACnet Stack at SourceForge"
+#define BACNET_VENDOR_NAME "BACnet Interoperability Testing Services, Inc."
 #endif
 
 /* Max number of bytes in an APDU. */
@@ -97,7 +97,7 @@
 
 /* some modules have debugging enabled using PRINT_ENABLED */
 #if !defined(PRINT_ENABLED)
-#define PRINT_ENABLED 0
+#define PRINT_ENABLED 1
 #endif
 
 /* BACAPP decodes WriteProperty service requests

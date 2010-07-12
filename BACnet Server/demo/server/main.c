@@ -1,7 +1,7 @@
 /**************************************************************************
 *
 * Copyright (C) 2006 Steve Karg <skarg@users.sourceforge.net>
-* 
+*
 * Permission is hereby granted, free of charge, to any person obtaining
 * a copy of this software and associated documentation files (the
 * "Software"), to deal in the Software without restriction, including
@@ -28,6 +28,7 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <time.h>
+#include <conio.h>
 #include "config.h"
 #include "server.h"
 #include "address.h"
@@ -53,7 +54,7 @@
 
 /** @file server/main.c  Example server application using the BACnet Stack. */
 
-/* (Doxygen note: The next two lines pull all the following Javadoc
+/* (Doxygen note: The next two lines pull all the following Javadoc 
  *  into the ServerDemo module.) */
 /** @addtogroup ServerDemo */
 /*@{*/
@@ -114,14 +115,22 @@ static void cleanup(
     datalink_cleanup();
 }
 
+void print_help ( void ) 
+{
+	printf ( "\nHelp Screen : \n");
+	printf ( "   Q - Quit\n");
+	printf ( "\n" ) ;
+}
+
+
 /** Main function of server demo.
  *
- * @see Device_Set_Object_Instance_Number, dlenv_init, Send_I_Am,
+ * @see Device_Set_Object_Instance_Number, dlenv_init, Send_I_Am, 
  *      datalink_receive, npdu_handler,
- *      dcc_timer_seconds, bvlc_maintenance_timer,
- *      Load_Control_State_Machine_Handler, handler_cov_task,
+ *      dcc_timer_seconds, bvlc_maintenance_timer, 
+ *      Load_Control_State_Machine_Handler, handler_cov_task, 
  *      tsm_timer_milliseconds
- *
+ *  
  * @param argc [in] Arg count.
  * @param argv [in] Takes one argument: the Device Instance #.
  * @return 0 on success.
@@ -143,9 +152,17 @@ int main(
     /* allow the device ID to be set */
     if (argc > 1)
         Device_Set_Object_Instance_Number(strtol(argv[1], NULL, 0));
-    printf("BACnet Server Demo\n" "BACnet Stack Version %s\n"
-        "BACnet Device ID: %u\n" "Max APDU: %d\n", BACnet_Version,
-        Device_Object_Instance_Number(), MAX_APDU);
+
+    printf("BACnet Test Server by BACnet Interoperability Test Services, Inc. \n\n"
+		"   Corporate Website:          www.BAC-Test.com\n" 
+		"   Free Source Code for this:  www.sourceforge.net/projects/bacnetserver\n\n"
+		"BACnet Stack Version %s\n"
+        "BACnet Device ID: %u\n" 
+		"Max APDU: %d\n", 
+		BACnet_Version, Device_Object_Instance_Number(), MAX_APDU);
+
+	print_help();
+
     Init_Service_Handlers();
     dlenv_init();
     atexit(cleanup);
@@ -166,7 +183,7 @@ int main(
             npdu_handler(&src, &Rx_Buf[0], pdu_len);
         }
         /* at least one second has passed */
-        elapsed_seconds = current_seconds - last_seconds;
+        elapsed_seconds = (uint32_t) ( current_seconds - last_seconds ) ;
         if (elapsed_seconds) {
             last_seconds = current_seconds;
             dcc_timer_seconds(elapsed_seconds);
@@ -182,7 +199,21 @@ int main(
         /* output */
 
         /* blink LEDs, Turn on or off outputs, etc */
+
+		if ( _kbhit () )
+		{
+			int ch = _getch () ;
+			switch ( toupper ( ch ) )
+			{
+			case 'Q':
+				exit ( 0 ) ;
+				break;
+			default:
+				print_help () ;
+				break;
+			}
+		}
     }
 }
 
-              /* @} *//* End group ServerDemo */
+              
